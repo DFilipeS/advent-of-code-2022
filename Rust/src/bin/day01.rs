@@ -1,4 +1,4 @@
-use std::io::Read;
+use std::{io::Read, num::ParseIntError, process::exit};
 
 #[derive(Debug, PartialEq)]
 struct Elf {
@@ -12,8 +12,20 @@ impl Elf {
 }
 
 fn main() {
-    let elves = read_input(&mut std::io::stdin());
-    let most_calories_elf = find_elf_with_most_calories(&elves).expect("there are no Elves");
+    let elves = match read_input(&mut std::io::stdin()) {
+        Ok(value) => value,
+        Err(_err) => {
+            eprintln!("Error parsing input, not a valid integer found");
+            exit(1);
+        }
+    };
+    let most_calories_elf = match find_elf_with_most_calories(&elves) {
+        Some(elf) => elf,
+        None => {
+            eprintln!("Could not find any Elves");
+            exit(2);
+        }
+    };
     let top_3_most_calories_elves = get_top_3_elves_with_most_calories(&elves);
 
     println!(
@@ -58,7 +70,7 @@ fn get_top_3_elves_with_most_calories(elves: &Vec<Elf>) -> Vec<&Elf> {
     elves.iter().take(3).copied().collect()
 }
 
-fn read_input(reader: &mut impl Read) -> Vec<Elf> {
+fn read_input(reader: &mut impl Read) -> Result<Vec<Elf>, ParseIntError> {
     let mut buffer = String::new();
 
     reader
@@ -66,23 +78,25 @@ fn read_input(reader: &mut impl Read) -> Vec<Elf> {
         .expect("could not read input");
 
     if buffer.trim().is_empty() {
-        return vec![];
+        return Ok(vec![]);
     }
 
     process_input(buffer.as_str())
 }
 
-fn process_input(input: &str) -> Vec<Elf> {
+fn process_input(input: &str) -> Result<Vec<Elf>, ParseIntError> {
     input
         .trim()
         .split("\n\n")
         .map(|inventory_input| {
-            let inventory = inventory_input
+            let inventory: Result<Vec<u32>, ParseIntError> = inventory_input
                 .lines()
-                .map(|line| line.parse().expect("invalid integer"))
+                .map(|line| line.parse::<u32>())
                 .collect();
 
-            Elf { inventory }
+            Ok(Elf {
+                inventory: inventory?,
+            })
         })
         .collect()
 }
@@ -114,7 +128,7 @@ mod tests {
     #[test]
     fn reads_and_parses_example_input() {
         let input = "1000\n2000\n3000\n\n4000\n\n5000\n6000\n\n7000\n8000\n9000\n\n10000";
-        let values = read_input(&mut input.as_bytes());
+        let values = read_input(&mut input.as_bytes()).unwrap();
         let expected = example_input();
 
         assert_eq!(values, expected)
@@ -123,7 +137,7 @@ mod tests {
     #[test]
     fn reads_and_parses_empty_input() {
         let input = "";
-        let values = read_input(&mut input.as_bytes());
+        let values = read_input(&mut input.as_bytes()).unwrap();
 
         assert!(values.is_empty());
     }
@@ -131,7 +145,7 @@ mod tests {
     #[test]
     fn reads_and_parses_input_with_only_new_lines() {
         let input = "\n\n\n\n\n";
-        let values = read_input(&mut input.as_bytes());
+        let values = read_input(&mut input.as_bytes()).unwrap();
 
         assert!(values.is_empty());
     }
