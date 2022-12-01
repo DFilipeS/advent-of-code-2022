@@ -1,7 +1,6 @@
 use std::io::Read;
 
 #[derive(Debug, PartialEq)]
-
 struct Elf {
     inventory: Vec<u32>,
 }
@@ -92,11 +91,8 @@ fn process_input(input: &str) -> Vec<Elf> {
 mod tests {
     use super::*;
 
-    #[test]
-    fn reads_and_parses_example_input() {
-        let input = "1000\n2000\n3000\n\n4000\n\n5000\n6000\n\n7000\n8000\n9000\n\n10000";
-        let values = read_input(&mut input.as_bytes());
-        let expected = vec![
+    fn example_input() -> Vec<Elf> {
+        vec![
             Elf {
                 inventory: vec![1000, 2000, 3000],
             },
@@ -112,7 +108,14 @@ mod tests {
             Elf {
                 inventory: vec![10000],
             },
-        ];
+        ]
+    }
+
+    #[test]
+    fn reads_and_parses_example_input() {
+        let input = "1000\n2000\n3000\n\n4000\n\n5000\n6000\n\n7000\n8000\n9000\n\n10000";
+        let values = read_input(&mut input.as_bytes());
+        let expected = example_input();
 
         assert_eq!(values, expected)
     }
@@ -135,25 +138,9 @@ mod tests {
 
     #[test]
     fn find_elf_with_most_calories_with_example_input() {
-        let values = vec![
-            Elf {
-                inventory: vec![1000, 2000, 3000],
-            },
-            Elf {
-                inventory: vec![4000],
-            },
-            Elf {
-                inventory: vec![5000, 6000],
-            },
-            Elf {
-                inventory: vec![7000, 8000, 9000],
-            },
-            Elf {
-                inventory: vec![10000],
-            },
-        ];
-
+        let values = example_input();
         let result = find_elf_with_most_calories(&values);
+
         assert!(result.is_some());
         assert_eq!(
             result.unwrap(),
@@ -172,24 +159,9 @@ mod tests {
 
     #[test]
     fn get_top_3_elves_with_most_calories_with_example_input() {
-        let values = vec![
-            Elf {
-                inventory: vec![7000, 8000, 9000],
-            },
-            Elf {
-                inventory: vec![5000, 6000],
-            },
-            Elf {
-                inventory: vec![10000],
-            },
-            Elf {
-                inventory: vec![1000, 2000, 3000],
-            },
-            Elf {
-                inventory: vec![4000],
-            },
-        ];
+        let values = example_input();
         let result = get_top_3_elves_with_most_calories(&values);
+
         assert_eq!(
             result,
             vec![
