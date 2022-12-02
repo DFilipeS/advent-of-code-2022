@@ -5,3 +5,4 @@
 ## Solutions
 
 - Day 1: Calorie Counting - [Rust](./Rust/src/bin/day01.rs)
+- Day 2: Rock Paper Scissors - [Rust](./Rust/src/bin/day02.rs)
