@@ -1,4 +1,5 @@
-use std::{cmp::Ordering, io::Read, process::exit};
+use advent_of_code::read_input;
+use std::{cmp::Ordering, process::exit};
 
 #[derive(Debug, PartialEq, Clone)]
 enum Shape {
@@ -41,7 +42,6 @@ impl PartialOrd for Shape {
 
 #[derive(Debug)]
 enum Error {
-    FailedToReadInput,
     InvalidShape,
 }
 
@@ -116,16 +116,6 @@ fn process_rounds(rounds: &Vec<Round>) -> u32 {
     score
 }
 
-fn read_input(reader: &mut impl Read) -> Result<String, Error> {
-    let mut buffer = String::new();
-
-    reader
-        .read_to_string(&mut buffer)
-        .map_err(|_| Error::FailedToReadInput)?;
-
-    Ok(buffer)
-}
-
 fn parse_input_with_guess(input: &str) -> Result<Vec<Round>, Error> {
     input
         .trim()
@@ -175,6 +165,7 @@ fn parse_input_with_strategy(input: &str) -> Result<Vec<Round>, Error> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use advent_of_code::read_input;
 
     #[test]
     fn read_and_parse_input_with_example_input_with_guess() {
@@ -221,7 +212,7 @@ mod tests {
     #[test]
     fn read_and_parse_input_with_empty_input() {
         let input = "\n\n\n";
-        let values = read_input(&mut input.as_bytes()).unwrap();
+        let values = advent_of_code::read_input(&mut input.as_bytes()).unwrap();
         let result = parse_input_with_guess(&values).unwrap();
 
         assert!(result.is_empty());
