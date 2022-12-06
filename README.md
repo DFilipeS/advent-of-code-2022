@@ -8,3 +8,4 @@
 - Day 2: Rock Paper Scissors - [Rust](./Rust/src/bin/day02.rs)
 - Day 3: Rucksack Reorganization - [Rust](./Rust/src/bin/day03.rs)
 - Day 4: Camp Cleanup - [Rust](./Rust/src/bin/day04.rs)
+- Day 5: Supply Stacks - [Rust](./Rust/src/bin/day05.rs)
