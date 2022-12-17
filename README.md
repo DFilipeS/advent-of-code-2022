@@ -12,3 +12,4 @@
 - Day 6: Tuning Trouble - [Rust](./Rust/src/bin/day06.rs)
 - Day 7: No Space Left On Device - [Rust](./Rust/src/bin/day07.rs)
 - Day 8: Treetop Tree House - [Rust](./Rust/src/bin/day08.rs)
+- Day 9: Rope Bridge - [Rust](./Rust/src/bin/day09.rs)
