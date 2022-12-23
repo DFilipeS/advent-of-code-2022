@@ -30,7 +30,7 @@ enum Files<'a> {
 }
 
 /// I was getting some trouble with the parsing of this problem but thanks to
-/// the video of Chris Biscardi (https://www.youtube.com/watch?v=t9OQ3ca8OWk) I
+/// the video of Chris Biscardi <https://www.youtube.com/watch?v=t9OQ3ca8OWk> I
 /// learned about `nom` and how to use it.
 fn main() {
     let input = read_input(&mut stdin()).unwrap_or_else(|err| {
