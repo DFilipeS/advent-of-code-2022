@@ -14,3 +14,4 @@
 - Day 8: Treetop Tree House - [Rust](./Rust/src/bin/day08.rs)
 - Day 9: Rope Bridge - [Rust](./Rust/src/bin/day09.rs)
 - Day 10: Cathode-Ray Tube - [Rust](./Rust/src/bin/day10.rs)
+- Day 11: Monkey in the Middle - [Rust](./Rust/src/bin/day11.rs)
