@@ -17,3 +17,4 @@
 - Day 11: Monkey in the Middle - [Rust](./Rust/src/bin/day11.rs)
 - Day 12: Hill Climbing Algorithm - [Rust](./Rust/src/bin/day12.rs)
 - Day 13: Distress Signal - [Rust](./Rust/src/bin/day13.rs)
+- Day 14: Regolith Reservoir - [Rust](./Rust/src/bin/day14.rs)
