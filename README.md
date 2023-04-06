@@ -18,3 +18,4 @@
 - Day 12: Hill Climbing Algorithm - [Rust](./Rust/src/bin/day12.rs)
 - Day 13: Distress Signal - [Rust](./Rust/src/bin/day13.rs)
 - Day 14: Regolith Reservoir - [Rust](./Rust/src/bin/day14.rs)
+- Day 15: Beacon Exclusion Zone - [Rust](./Rust/src/bin/day15.rs)
